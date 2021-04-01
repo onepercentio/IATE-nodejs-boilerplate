@@ -3,6 +3,6 @@ const sinon = require('sinon')
 
 const adapter = require('../adapter')
 
-describe('The <ResourceName> adapter', () => {
+describe('The <FTName> adapter', () => {
 
 })

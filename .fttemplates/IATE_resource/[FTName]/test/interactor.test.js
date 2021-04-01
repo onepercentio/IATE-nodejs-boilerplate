@@ -4,6 +4,6 @@ const sinon = require('sinon')
 const interactor = require('../interactor')
 const entity = require('../entity')
 
-describe('The <ResourceName> interactor', () => {
+describe('The <FTName> interactor', () => {
 
 })

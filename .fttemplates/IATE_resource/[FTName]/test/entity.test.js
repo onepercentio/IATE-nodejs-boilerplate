@@ -4,6 +4,6 @@ const sinon = require('sinon')
 const entity = require('../entity')
 const adapter = require('../adapter')
 
-describe('The <ResourceName> entity', () => {
+describe('The <FTName> entity', () => {
 
 })

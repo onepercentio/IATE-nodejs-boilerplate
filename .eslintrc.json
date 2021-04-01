@@ -1,0 +1,26 @@
+{
+    "env": {
+        "browser": false,
+        "commonjs": true,
+        "es2021": true,
+        "mocha": true
+    },
+    "extends": [
+        "airbnb"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 12
+    },
+    "rules": {
+        "padded-blocks": "off",
+        "semi": "off",
+        "comma-dangle": "off",
+        "object-curly-spacing": "off",
+        "max-len": "off",
+        "array-bracket-spacing": "off",
+        "arrow-parens": "off",
+        "one-var": "off",
+        "eol-last": "off",
+        "consistent-return": "off"
+    }
+}

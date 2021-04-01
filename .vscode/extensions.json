@@ -1,3 +1,7 @@
 {
-  "recommendations": ["Huuums.vscode-fast-folder-structure", "dbaeumer.vscode-eslint"]
+  "recommendations": [
+    "Huuums.vscode-fast-folder-structure",
+    "dbaeumer.vscode-eslint",
+    "eamodio.gitlens"
+  ]
 }

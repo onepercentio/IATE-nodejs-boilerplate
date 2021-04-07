@@ -10,7 +10,7 @@ const errorHandler = require('./src/middleware/error')
 const app = express()
 
 // routes
-const assetsRoutes = require('./src/assets/routes')
+// const assetsRoutes = require('./src/assets/routes')
 const customersRoutes = require('./src/customers/routes')
 
 // middlewares setup
@@ -23,7 +23,9 @@ app.use(authHandler)
 app.use('/healthcheck', healthCheck())
 
 // routes setup
-app.use([ walletRoutes, accessListRoutes, transactionsRoutes, tokensRoutes, configsRoutes, customersRoutes ])
+app.use([ customersRoutes ])
+
+// error handler middleware
 app.use(errorHandler)
 
 module.exports = app

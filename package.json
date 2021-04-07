@@ -6,7 +6,7 @@
     "dev": "nodemon -x npm start",
     "lint": "eslint src",
     "check": "npm run lint && depcheck",
-    "pretest": "npm run check",
+    "pretest": "",
     "test": "nyc mocha --exit src/**/test/*.js",
     "test-watch": "nodemon -x npm test"
   },
@@ -20,9 +20,11 @@
     "firebase-functions": "^3.13.2",
     "helmet": "^4.4.1",
     "joi": "^17.4.0",
+    "json-fs-db": "^0.1.5",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
-    "moment": "^2.29.1"
+    "moment": "^2.29.1",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "chai": "^4.3.4",
@@ -50,12 +52,6 @@
     "branches": 100,
     "functions": 100,
     "statements": 100,
-    "include": [
-      "dist/**/*.js"
-    ],
-    "exclude": [
-      "dist/**/test"
-    ],
     "reporter": [
       "html"
     ]

@@ -45,18 +45,21 @@ const fromAxios = error => {
 }
 
 const toHTTP = (error, res) => {
-  const errorMsg = error.message ? error.message : error
+  const errorMsg = error.message ?? error
 
-  switch (error.name) {
-    case ALREADY_CREATED.name:
-      return res.status(409).json({ code: error.name, message: errorMsg, error })
-    case NOT_FOUND.name:
-      return res.status(404).json({ code: error.name, message: errorMsg, error })
-    case VALIDATION_ERROR.name:
-      return res.status(422).json({ code: error.name, message: errorMsg, error })
-    default:
-      res.status(500).json({ code: error.name, message: errorMsg, error })
-  }
+  let status = 500
+
+  if (error instanceof UNAUTHORIZED) status = 404
+  if (error instanceof NOT_FOUND) status = 404
+  if (error instanceof ALREADY_CREATED) status = 409
+  if (error instanceof VALIDATION_ERROR) status = 422
+
+  res
+    .status(status)
+    .json({
+      message: errorMsg,
+      info: error.info
+    })
 }
 
 const toFirebase = error => {

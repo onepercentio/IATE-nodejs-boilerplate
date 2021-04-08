@@ -8,7 +8,8 @@
     "check": "npm run lint && depcheck",
     "pretest": "",
     "test": "nyc mocha --exit src/**/test/*.js",
-    "test-watch": "nodemon -x npm test"
+    "test-watch": "nodemon -x npm test",
+    "swagger-autogen": "node swagger.js"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -24,6 +25,8 @@
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
+    "swagger-autogen": "^2.7.8",
+    "swagger-ui-express": "^4.1.6",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

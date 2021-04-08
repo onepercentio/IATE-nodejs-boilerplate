@@ -6,6 +6,9 @@ const healthCheck = require('express-healthcheck')
 
 const authHandler = require('./src/middleware/auth')
 const errorHandler = require('./src/middleware/error')
+const swaggerUi = require('swagger-ui-express')
+const swaggerFile = require('./swagger_output.json')
+
 
 const app = express()
 
@@ -18,9 +21,12 @@ app.use(helmet())
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use(cors())
-app.use(bearerToken())
-app.use(authHandler)
+//app.use(bearerToken())
+//app.use(authHandler)
 app.use('/healthcheck', healthCheck())
+
+//swagger config
+app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 // routes setup
 app.use([ customersRoutes ])

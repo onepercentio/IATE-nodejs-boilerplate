@@ -2,17 +2,43 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "REST API",
-    "description": ""
+    "title": "MOSS BoilerPlate",
+    "description": "Esta é uma documentação do serviço de boilerplate da MOSS"
   },
   "host": "localhost:3000",
   "basePath": "/",
-  "tags": [],
-  "schemes": [
-    "http"
+  "tags": [
+    {
+      "name": "Customers",
+      "description": "Customers Endpoints"
+    }
   ],
-  "consumes": [],
-  "produces": [],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "securityDefinitions": {
+    "api_key": {
+      "type": "apiKey",
+      "name": "api_key",
+      "in": "header"
+    },
+    "petstore_auth": {
+      "type": "oauth2",
+      "authorizationUrl": "https://petstore.swagger.io/oauth/authorize",
+      "flow": "implicit",
+      "scopes": {
+        "read_pets": "read your pets",
+        "write_pets": "modify pets in your account"
+      }
+    }
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
   "paths": {
     "/customers": {
       "post": {
@@ -53,8 +79,60 @@
             "description": "OK"
           }
         }
+      },
+      "patch": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "list",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     }
   },
-  "definitions": {}
+  "definitions": {
+    "Customers": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 1
+        },
+        "name": {
+          "type": "string",
+          "example": "Christian Burgard"
+        },
+        "email": {
+          "type": "string",
+          "example": "christian.nooma@moss.earth"
+        }
+      }
+    },
+    "AddCustomers": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Christian Burgard"
+        },
+        "email": {
+          "type": "string",
+          "example": "christian.nooma@moss.earth"
+        }
+      },
+      "required": [
+        "name",
+        "email"
+      ]
+    }
+  }
 }

@@ -1,7 +1,10 @@
 const interactor = require('./interactor')
 
 const translator = {
+
   create: async (req, res, next) => {
+    // # swagger.tags = [Customers]
+    // #swagger.description = 'Create a custumer'
     try {
       const customer = {
         ...req.body,
@@ -17,7 +20,7 @@ const translator = {
   },
   find: async (req, res, next) => {
     try {
-      const [ , , ids ] = req.path.split('/')
+      const [, , ids] = req.path.split('/')
       const list = ids?.split(',') ?? []
 
       const customers = await interactor.find(list)

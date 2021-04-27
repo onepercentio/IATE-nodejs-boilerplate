@@ -18,6 +18,9 @@
       "git add"
     ]
   },
+  "standard": {
+    "env": ["jest"]
+  },
   "dependencies": {
     "axios": "^0.21.1",
     "cors": "^2.8.5",

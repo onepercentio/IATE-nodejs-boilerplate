@@ -1,7 +1,7 @@
 const swaggerAutogen = require('swagger-autogen')()
 
 const outputFile = './swagger_output.json'
-const endpointsFiles = ['src/customers/routes.js']
+const endpointsFiles = ['src/app/resources/customers/routes/routes.js']
 
 const doc = {
   info: {
@@ -14,12 +14,6 @@ const doc = {
   schemes: ['http', 'https'],
   consumes: ['application/json'],
   produces: ['application/json'],
-  tags: [
-    {
-      name: 'Customers',
-      description: 'Customers Endpoints'
-    }
-  ],
   securityDefinitions: {
     api_key: {
       type: 'apiKey',
@@ -36,18 +30,39 @@ const doc = {
       }
     }
   },
+  tags: [
+    {
+      name: 'Customer',
+      description: 'Customers Endpoints'
+    }
+
+  ],
   definitions: {
-    Customers: {
+    Customer: {
       name: 'Christian Burgard',
       document: '00000000000',
       customer: 'admintoken',
       id: '6e005fa4-c996-4d40-996c-a082c2151b5e'
     },
-    AddCustomers: {
+    CustomerList: [
+      {
+        name: 'Christian Burgard',
+        document: '00000000000',
+        customer: 'admintoken',
+        id: '6e005fa4-c996-4d40-996c-a082c2151b5e'
+      }
+    ],
+    AddCustomer: {
+      $name: 'Christian Burgard',
+      $document: '00000000000',
+      $customer: 'admintoken'
+    },
+    PutCustomer: {
       $name: 'Christian Burgard',
       $document: '00000000000',
       $customer: 'admintoken'
     }
+
   }
 }
 

@@ -9,7 +9,7 @@
   "basePath": "/",
   "tags": [
     {
-      "name": "Customers",
+      "name": "Customer",
       "description": "Customers Endpoints"
     }
   ],
@@ -42,8 +42,10 @@
   "paths": {
     "/customers": {
       "post": {
-        "tags": [],
-        "description": "",
+        "tags": [
+          "Customer"
+        ],
+        "description": "Create a custumer",
         "parameters": [],
         "responses": {
           "200": {
@@ -52,86 +54,167 @@
         }
       },
       "get": {
-        "tags": [],
-        "description": "",
+        "tags": [
+          "Customer"
+        ],
+        "description": "Create a custumer",
         "parameters": [],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Return a Customer list",
+            "schema": {
+              "$ref": "#/definitions/CustomerList"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     },
-    "/customers/{list}": {
+    "/customers/{id}": {
       "get": {
-        "tags": [],
-        "description": "",
+        "tags": [
+          "Customer"
+        ],
+        "description": "Create a custumer",
         "parameters": [
           {
-            "name": "list",
-            "in": "path",
+            "name": "id",
+            "in": "patch",
             "required": true,
-            "type": "string"
+            "type": "number",
+            "description": "Customer id"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Customer finding",
+            "schema": {
+              "$ref": "#/definitions/Customer"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
       "patch": {
-        "tags": [],
-        "description": "",
+        "tags": [
+          "Customer"
+        ],
+        "description": "Create a custumer",
         "parameters": [
           {
-            "name": "list",
-            "in": "path",
+            "name": "id",
+            "in": "patch",
             "required": true,
-            "type": "string"
+            "type": "number",
+            "description": "Customer id"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Customer finding",
+            "schema": {
+              "$ref": "#/definitions/Customer"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     }
   },
   "definitions": {
-    "Customers": {
+    "Customer": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "number",
-          "example": 1
-        },
         "name": {
           "type": "string",
           "example": "Christian Burgard"
         },
-        "email": {
+        "document": {
           "type": "string",
-          "example": "christian.nooma@moss.earth"
+          "example": "00000000000"
+        },
+        "customer": {
+          "type": "string",
+          "example": "admintoken"
+        },
+        "id": {
+          "type": "string",
+          "example": "6e005fa4-c996-4d40-996c-a082c2151b5e"
         }
       }
     },
-    "AddCustomers": {
+    "CustomerList": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Christian Burgard"
+          },
+          "document": {
+            "type": "string",
+            "example": "00000000000"
+          },
+          "customer": {
+            "type": "string",
+            "example": "admintoken"
+          },
+          "id": {
+            "type": "string",
+            "example": "6e005fa4-c996-4d40-996c-a082c2151b5e"
+          }
+        }
+      }
+    },
+    "AddCustomer": {
       "type": "object",
       "properties": {
         "name": {
           "type": "string",
           "example": "Christian Burgard"
         },
-        "email": {
+        "document": {
           "type": "string",
-          "example": "christian.nooma@moss.earth"
+          "example": "00000000000"
+        },
+        "customer": {
+          "type": "string",
+          "example": "admintoken"
         }
       },
       "required": [
         "name",
-        "email"
+        "document",
+        "customer"
+      ]
+    },
+    "PutCustomer": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Christian Burgard"
+        },
+        "document": {
+          "type": "string",
+          "example": "00000000000"
+        },
+        "customer": {
+          "type": "string",
+          "example": "admintoken"
+        }
+      },
+      "required": [
+        "name",
+        "document",
+        "customer"
       ]
     }
   }

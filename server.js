@@ -11,7 +11,8 @@ const app = express()
 
 // routes
 // const assetsRoutes = require('./src/assets/routes')
-const customersRoutes = require('./src/app/resources/customers/routes/routes')
+const customersRoutes = require('./src/app/resources/customers/routes')
+const personRoutes = require('./src/app/resources/person/routes')
 
 // middlewares setup
 app.use(helmet())
@@ -27,6 +28,7 @@ app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 // routes setup
 app.use(customersRoutes)
+app.use(personRoutes)
 
 // error handler middleware
 app.use(errorHandler)

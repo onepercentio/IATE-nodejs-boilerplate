@@ -1,4 +1,4 @@
-const adapter = require('../useCases/adapter')
+const adapter = require('./adapter')
 
 const entity = {
   find: adapter.find,

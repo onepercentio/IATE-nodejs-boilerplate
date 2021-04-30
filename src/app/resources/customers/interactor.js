@@ -1,6 +1,6 @@
 const _ = require('lodash')
-const { NOT_FOUND, ALREADY_CREATED } = require('../../../shared/errors')
-const entity = require('../entities/entity')
+const { NOT_FOUND, ALREADY_CREATED } = require('../../shared/errors')
+const entity = require('./entity')
 
 const interactor = {
   create: async customer => {

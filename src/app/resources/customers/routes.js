@@ -1,5 +1,5 @@
 const express = require('express')
-const { translator } = require('../controllers/controller')
+const { translator } = require('./translator-v1')
 
 const routes = express.Router()
 

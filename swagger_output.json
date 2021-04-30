@@ -11,6 +11,13 @@
     {
       "name": "Customer",
       "description": "Customers Endpoints"
+    },
+    {
+      "name": "Product",
+      "description": "Product Endpoints"
+    },
+    {
+      "name": "Person"
     }
   ],
   "schemes": [
@@ -36,8 +43,18 @@
         "tags": [
           "Customer"
         ],
-        "description": "Create a custumer",
-        "parameters": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "newCustomer",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "schema": {
+              "$ref": "#/definitions/AddCustomer"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -116,6 +133,30 @@
           }
         }
       }
+    },
+    "/person": {
+      "post": {
+        "tags": [
+          "Person"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "person",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "schema": {
+              "$ref": "#/definitions/Person"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -127,12 +168,16 @@
           "example": "Christian Burgard"
         },
         "document": {
-          "type": "string",
-          "example": "00000000000"
+          "type": "number",
+          "example": 0
         },
         "customer": {
           "type": "string",
           "example": "admintoken"
+        },
+        "email": {
+          "type": "string",
+          "example": "example@example.com"
         },
         "id": {
           "type": "string",
@@ -150,8 +195,8 @@
             "example": "Christian Burgard"
           },
           "document": {
-            "type": "string",
-            "example": "00000000000"
+            "type": "number",
+            "example": 0
           },
           "customer": {
             "type": "string",
@@ -172,8 +217,25 @@
           "example": "Christian Burgard"
         },
         "document": {
+          "type": "number",
+          "example": 0
+        },
+        "email": {
           "type": "string",
-          "example": "00000000000"
+          "example": "example@example.com"
+        }
+      }
+    },
+    "PutCustomer": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Christian Burgard"
+        },
+        "document": {
+          "type": "number",
+          "example": 0
         },
         "customer": {
           "type": "string",
@@ -186,26 +248,32 @@
         "customer"
       ]
     },
-    "PutCustomer": {
+    "CreateProduct": {
       "type": "object",
       "properties": {
         "name": {
           "type": "string",
-          "example": "Christian Burgard"
+          "example": "Pao"
         },
-        "document": {
-          "type": "string",
-          "example": "00000000000"
-        },
-        "customer": {
-          "type": "string",
-          "example": "admintoken"
+        "qtd": {
+          "type": "number",
+          "example": 1
         }
       },
       "required": [
-        "name",
-        "document",
-        "customer"
+        "name"
+      ]
+    },
+    "Person": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Jao"
+        }
+      },
+      "required": [
+        "name"
       ]
     }
   }

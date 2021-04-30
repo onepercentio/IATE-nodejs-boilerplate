@@ -1,6 +1,6 @@
 const _ = require('lodash')
 const uuid = require('uuid')
-const db = require('../../../shared/fsdb')
+const db = require('../../shared/fsdb')
 
 const COLLECTION = 'customers'
 

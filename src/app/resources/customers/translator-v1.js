@@ -1,19 +1,28 @@
-const interactor = require('../useCases/interactor')
+const interactor = require('./interactor')
+const { customerSchema } = require('./customerSchema')
 
 const translator = {
 
   create: async (req, res, next) => {
     // #swagger.tags = ['Customer']
-    // #swagger.description = 'Create a custumer'
+    /* #swagger.parameters['newCustomer'] = {
+                in: 'body',
+                required: true,
+                type: 'object',
+                schema: {$ref: "#/definitions/AddCustomer"}
+    } */
     try {
-      const customer = {
-        ...req.body,
-        adminToken: req.token
-      }
+      const customer = await customerSchema.validateAsync(req.body)
       const id = await interactor.create(customer)
       res.status(200).json({ id })
     } catch (error) {
-      next(error)
+      if (error.isJoi === true) {
+        error.status = 422
+        res.status(error.status).json({ message: error.details[0].message })
+      }
+      if (error.status >= 500) {
+        res.status(error.status).json({ message: 'internal server error' })
+      }
     }
   },
 

@@ -3,8 +3,9 @@ const cors = require('cors')
 const helmet = require('helmet')
 const healthCheck = require('express-healthcheck')
 
-const errorHandler = require('./src/app/shared/middleware/error')
 const swaggerUi = require('swagger-ui-express')
+
+const errorHandler = require('./src/app/shared/middleware/error')
 const swaggerFile = require('./swagger_output.json')
 
 const app = express()
@@ -12,7 +13,6 @@ const app = express()
 // routes
 // const assetsRoutes = require('./src/assets/routes')
 const customersRoutes = require('./src/app/resources/customers/routes')
-const personRoutes = require('./src/app/resources/person/routes')
 
 // middlewares setup
 app.use(helmet())
@@ -28,7 +28,6 @@ app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 // routes setup
 app.use(customersRoutes)
-app.use(personRoutes)
 
 // error handler middleware
 app.use(errorHandler)

@@ -1,32 +1,33 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-param-reassign */
 const _ = require('lodash')
 const uuid = require('uuid')
-const db = require('../../shared/fsdb')
 
-const COLLECTION = 'customers'
+const Customer = require('./customerModel')
+
+const db = Customer
 
 const adapter = {
   find: async list => {
-    const { __filePath, ...customers } = await db.get(COLLECTION)
-
-    const customerList = _.values(customers)
+    const customerList = db.find()
 
     if (_.isEmpty(list)) return customerList
 
     return customerList.filter(({ id }) => list.includes(id))
   },
-  findById: id => db.get(`${COLLECTION}.${id}`),
-  findBy: async filters => {
-    const { __filePath, ...customers } = await db.get(COLLECTION)
 
-    const customerList = _.values(customers)
+  findById: id => db.findById({ _id: id }),
 
-    return _.filter(customerList, filters)
-  },
+  findBy: async filters => db.find({ document: filters.document }),
+
   create: async customer => {
-    const id = uuid.v4()
-    await db.set(`${COLLECTION}.${id}`, { id, ...customer })
-
-    return id
+    customer.id = uuid.v4()
+    const result = await new Customer(customer).save()
+    return result._id
+  },
+  updateById: async (id, customer) => {
+    const result = await db.findOneAndUpdate({ _id: id }, customer, { new: true })
+    return result
   }
 }
 

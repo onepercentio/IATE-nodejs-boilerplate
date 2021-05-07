@@ -11,13 +11,6 @@
     {
       "name": "Customer",
       "description": "Customers Endpoints"
-    },
-    {
-      "name": "Product",
-      "description": "Product Endpoints"
-    },
-    {
-      "name": "Person"
     }
   ],
   "schemes": [
@@ -89,9 +82,9 @@
         "parameters": [
           {
             "name": "id",
-            "in": "patch",
+            "in": "path",
             "required": true,
-            "type": "number",
+            "type": "string",
             "description": "Customer id"
           }
         ],
@@ -107,6 +100,37 @@
           }
         }
       },
+      "put": {
+        "tags": [
+          "Customer"
+        ],
+        "description": "Update Customer by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Customer id"
+          },
+          {
+            "name": "Customer",
+            "in": "body",
+            "type": "object",
+            "schema": {
+              "$ref": "#/definitions/UpdateCustomer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
       "patch": {
         "tags": [
           "Customer"
@@ -115,9 +139,9 @@
         "parameters": [
           {
             "name": "id",
-            "in": "patch",
+            "in": "path",
             "required": true,
-            "type": "number",
+            "type": "string",
             "description": "Customer id"
           }
         ],
@@ -130,30 +154,6 @@
           },
           "500": {
             "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/person": {
-      "post": {
-        "tags": [
-          "Person"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "person",
-            "in": "body",
-            "required": true,
-            "type": "object",
-            "schema": {
-              "$ref": "#/definitions/Person"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
           }
         }
       }
@@ -248,33 +248,22 @@
         "customer"
       ]
     },
-    "CreateProduct": {
+    "UpdateCustomer": {
       "type": "object",
       "properties": {
         "name": {
           "type": "string",
-          "example": "Pao"
+          "example": ""
         },
-        "qtd": {
+        "document": {
           "type": "number",
-          "example": 1
-        }
-      },
-      "required": [
-        "name"
-      ]
-    },
-    "Person": {
-      "type": "object",
-      "properties": {
-        "name": {
+          "example": 0
+        },
+        "email": {
           "type": "string",
-          "example": "Jao"
+          "example": "cburgard.trajano@gmail.com"
         }
-      },
-      "required": [
-        "name"
-      ]
+      }
     }
   }
 }

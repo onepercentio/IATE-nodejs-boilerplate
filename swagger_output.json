@@ -1,0 +1,269 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "MOSS BoilerPlate",
+    "description": "Esta é uma documentação do serviço de boilerplate da MOSS"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Customer",
+      "description": "Customers Endpoints"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "securityDefinitions": {
+    "api_key": {
+      "type": "apiKey",
+      "name": "api_key",
+      "in": "header"
+    }
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/customers": {
+      "post": {
+        "tags": [
+          "Customer"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "newCustomer",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "schema": {
+              "$ref": "#/definitions/AddCustomer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "description": "Create a custumer",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Return a Customer list",
+            "schema": {
+              "$ref": "#/definitions/CustomerList"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/customers/{id}": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "description": "Create a custumer",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Customer id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Customer finding",
+            "schema": {
+              "$ref": "#/definitions/Customer"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Customer"
+        ],
+        "description": "Update Customer by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Customer id"
+          },
+          {
+            "name": "Customer",
+            "in": "body",
+            "type": "object",
+            "schema": {
+              "$ref": "#/definitions/UpdateCustomer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Customer"
+        ],
+        "description": "Create a custumer",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Customer id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Customer finding",
+            "schema": {
+              "$ref": "#/definitions/Customer"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Customer": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Christian Burgard"
+        },
+        "document": {
+          "type": "number",
+          "example": 0
+        },
+        "customer": {
+          "type": "string",
+          "example": "admintoken"
+        },
+        "email": {
+          "type": "string",
+          "example": "example@example.com"
+        },
+        "id": {
+          "type": "string",
+          "example": "6e005fa4-c996-4d40-996c-a082c2151b5e"
+        }
+      }
+    },
+    "CustomerList": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Christian Burgard"
+          },
+          "document": {
+            "type": "number",
+            "example": 0
+          },
+          "customer": {
+            "type": "string",
+            "example": "admintoken"
+          },
+          "id": {
+            "type": "string",
+            "example": "6e005fa4-c996-4d40-996c-a082c2151b5e"
+          }
+        }
+      }
+    },
+    "AddCustomer": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Christian Burgard"
+        },
+        "document": {
+          "type": "number",
+          "example": 0
+        },
+        "email": {
+          "type": "string",
+          "example": "example@example.com"
+        }
+      }
+    },
+    "PutCustomer": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Christian Burgard"
+        },
+        "document": {
+          "type": "number",
+          "example": 0
+        },
+        "customer": {
+          "type": "string",
+          "example": "admintoken"
+        }
+      },
+      "required": [
+        "name",
+        "document",
+        "customer"
+      ]
+    },
+    "UpdateCustomer": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": ""
+        },
+        "document": {
+          "type": "number",
+          "example": 0
+        },
+        "email": {
+          "type": "string",
+          "example": "cburgard.trajano@gmail.com"
+        }
+      }
+    }
+  }
+}

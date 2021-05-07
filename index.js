@@ -8,17 +8,18 @@ const port = process.env.PORT ?? 3000
 let mongod = null
 
 const mongo = async () => {
+  const mongooseOpts = {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useFindAndModify: false
+  }
+
   if (process.env.environment === 'development') {
     mongod = new MongoMemoryServer()
     const uri = await mongod.getUri()
-    console.log(uri)
-    const mongooseOpts = {
-      useUnifiedTopology: true,
-      useNewUrlParser: true,
-      useFindAndModify: false
-    }
-
     await mongoose.connect(uri, mongooseOpts)
+  } else {
+    await mongoose.connect(process.env.uriDb, mongooseOpts)
   }
 }
 
